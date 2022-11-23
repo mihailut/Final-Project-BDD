@@ -2,10 +2,11 @@ from selenium.webdriver.common.by import By
 from pages.base_page import Basepage
 from time import sleep
 
+
 class Forgot_Pwd_Page(Basepage):
     EMAIL_INPUT = (By.XPATH, f'//input[@placeholder="Enter your email"]')
     INVALID_EMAIL_MESSAGE = (By.XPATH, f'//p[contains(text(), "Please enter a valid email address!")]')
-    SEND_EMAIL_BUTTON = (By.XPATH, '//*[@id="root"]/div/div[2]/div/div[2]/button')
+    SEND_EMAIL_BUTTON = (By.XPATH, "//*[@id='root']/div/div[2]/div/div[2]/button")
     BACK_TO_LOGIN = (By.LINK_TEXT, "Back to login")
 
     def set_email(self, email):
@@ -22,4 +23,4 @@ class Forgot_Pwd_Page(Basepage):
     def verify_error_email_message(self):
         expected = "Please enter a valid email address!"
         actual = self.chrome.find_element(*self.INVALID_EMAIL_MESSAGE).text
-        self.assertEqual(expected, actual, 'The message by the page is incorrect.')
+        self.assertEqual(expected, actual, 'The message returned by the page is incorrect.')
